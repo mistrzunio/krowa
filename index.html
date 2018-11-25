@@ -1,8 +1,96 @@
-<html>
+
+<!doctype html>
+<html lang="pl">
     <head>
-        <title>krowa 2.0</title>
+        <meta charset="utf-8">
+        <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
+        <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/> 
+        <link type="text/css" rel="stylesheet" href="css/kro.css"/> 
+        
+        <script src="js/kro.js"></script>
+        <script src="js/krowniki.js"></script>
+        <script src="js/wymion.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+
+        <script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+        <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+
     </head>
     <body>
-        <div id="cielsko"></div>
+        <div id="app">
+
+            <b-navbar toggleable="md" type="dark" variant="dark" class="navbar sticky-top">
+            <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+            <b-navbar-brand href="#krowa">krowa.org</b-navbar-brand>         
+            <b-collapse is-nav id="nav_collapse">        
+              <b-navbar-nav>
+                    <b-nav-item href="#teraz">najnowsza tfu rczość</b-nav-item>
+                    <b-nav-item href="#dawniej">krowina dalszej swieżości</b-nav-item>
+                
+              </b-navbar-nav>
+          
+              <!-- Right aligned nav items -->
+              
+          
+            </b-collapse>
+          </b-navbar>
+
+              <b-card-body class="content-stream">
+                
+                <h1 id="krowa">&nbsp;</h1><p>&nbsp;</p><h5>Mu!</h5>
+
+                <p>Oto Chwalebne Zpadlinowstanie. Więcej będzie jak tylko dotacje popłyną szerokim strumieniem. 
+                    <del>Zapisy do krowy będą otwarte niebawem.</del></p>
+                
+                <h1 id="teraz">&nbsp;</h1>
+                <h5>najnowsza tfu rczość</h5>
+                
+                <b-card-group columns>
+                <b-card v-for="ride in kroRides" class="ride">
+                  <template>
+                  <h6><small class="text-muted">{{ ride.athlete | matchRider }}</small> {{ ride.name }}</h6>
+                  Wykon: {{ ride.distance | unitKm }} w czasie {{ ride.elapsed_time | unitHMS }} (w tym {{ ride.total_elevation_gain | unitMetersUp }} pod górkę).
+                  <template v-if="ride.type == 'VirtualRide'">Żaden pneumatyczny obiekt fizycznego afektu nie został istotnie skrzywdzony w trakcie ćwiczenia.</template>
+                  </template>
+                </b-card>
+              </b-card-group>
+
+                <h1 id="dawniej">&nbsp;</h1><h5>krowina dalszej swieżości</h5>
+                <div v-for="post in olDkro">
+                  <template>
+                      <h6><small class="text-muted">{{ post.time }}</small> {{ post.title }}</h6>
+                      <p class="text-monospace">{{ post.content }}</p>
+                  </template>
+                </div>
+              </b-card-body>
+         
+         
+        </div> 
+          <script>
+          var app = new Vue({
+            el: '#app',
+            data: {
+                kroRides: kro,
+                olDkro: krowniki
+              },
+            filters: {
+              matchRider (rider) {
+                return czuonki.destrawuj(rider);
+              },
+              unitMetersUp (uphill) {
+                const everest = 8488;
+                return (uphill/8488).toFixed(4)+ ' everestów' 
+              },              
+              unitKm (distance) {
+                return (distance/1000).toFixed(1)+' km '
+              },
+              unitHMS (seconds) {
+                return (seconds>=3600?Math.floor(seconds/3600)+ ' h ':'')+
+                  (Math.floor(seconds % 3600 / 60)+ ' min ')+
+                  ((seconds % 60)+ ' sek')
+              }
+            }
+          })
+          </script>
     </body>
 </html>

@@ -1,0 +1,11 @@
+html {
+    font-size: 1rem;
+  }
+
+.content-stream {
+   margin-top: -5rem; 
+}
+
+.bg-dark {
+    background-color: black !important;
+}
