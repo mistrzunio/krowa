@@ -21,5 +21,13 @@ var czuonki = {
         } else {
             return ath.firstname+' '+ath.lastname
         }
+    },
+    processStravaData(obj) {
+        if (typeof obj.errors == "object") { 
+            console.log('Bad strava API response'); 
+            return []
+        } else {
+            return obj
+        }
     }
 }
