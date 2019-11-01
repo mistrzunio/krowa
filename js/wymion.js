@@ -18,6 +18,9 @@ var czuonki = {
         } else if (ath.firstname == 'Marzena' && ath.lastname == 'F.') {
             ath.nick = 'Buzz A.'
             return ath.nick  
+        } else if (ath.firstname == 'Piotr' && ath.lastname == 'S.') {
+            ath.nick = 'Sir Batąąą'
+            return ath.nick  
         } else {
             return ath.firstname+' '+ath.lastname
         }
