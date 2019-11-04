@@ -4,7 +4,7 @@ var czuonki = {
             ath.nick = 'Daniellek'
             return ath.nick
         } else if (ath.firstname == 'Marcin' && ath.lastname == 'B.') {
-            ath.nick = 'Yans'
+            ath.nick = 'Mrs Yans'
             return ath.nick           
         } else if (ath.firstname == 'Maciek' && ath.lastname == 'O.') {
             ath.nick = 'Olej'
@@ -19,7 +19,7 @@ var czuonki = {
             ath.nick = 'Buzz A.'
             return ath.nick  
         } else if (ath.firstname == 'Piotr' && ath.lastname == 'S.') {
-            ath.nick = 'Sir Batąąą'
+            ath.nick = 'Sir Batą'
             return ath.nick  
         } else {
             return ath.firstname+' '+ath.lastname
